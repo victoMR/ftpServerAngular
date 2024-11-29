@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Conexión FTP</h1>
+  <!-- Botones de acción -->
+  <button (click)="connect()">Conectar</button>
+
+  <!-- Lista de archivos -->
+  <div *ngIf="files.length > 0">
+    <h3>Archivos Disponibles</h3>
+    <ul>
+      <li *ngFor="let file of files">
+        {{ file.name }}
+        <button (click)="downloadFile(file.name)">Descargar</button>
+        <button (click)="deleteFile(file.name)">Eliminar</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Sección para subir archivos -->
+  <div class="upload-section">
+    <input type="file" #fileInput style="display: none" (change)="handleFileSelect($event)">
+    <button (click)="fileInput.click()">Subir archivo</button>
+  </div>
+  <!-- Mostrar errores -->
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+</div>
